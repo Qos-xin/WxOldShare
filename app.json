@@ -1,0 +1,43 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/publish/upload",
+    "pages/publish/uploadSuccess",    
+    "pages/address/index",
+    "pages/address/add",
+    "pages/my/my",
+    "pages/my/myPublish",
+    "pages/my/myReceive",
+    "pages/my/mySend",
+    "pages/my/myFavorite",
+    "pages/my/myMessage",
+    "pages/my/about",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color":"#dbdbdb",
+    "selectedColor":"#1296db",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "闲品",
+      "iconPath":"/images/unused-gray.png",
+      "selectedIconPath":"/images/unused-blue.png"
+    },{
+      "pagePath": "pages/publish/upload",
+      "text": "发布",
+      "iconPath": "/images/add-gray.png",
+      "selectedIconPath": "/images/add-blue.png"
+    },{
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "/images/my-gray.png",
+      "selectedIconPath": "/images/my-blue.png"
+    }]
+  }
+}

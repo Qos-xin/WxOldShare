@@ -1,0 +1,21 @@
+/* pages/publish/upload.wxss */
+
+.uploadBtn {
+  background-color: #ccc;
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+  box-sizing: border-box;
+  padding-top: 32rpx;
+  cursor: pointer;
+  color: #666;
+}
+
+.uploadBtn image {
+  width: 28px;
+  height: 28px;
+}
+
+.uploadBtn view {
+  text-align: center;
+}

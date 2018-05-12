@@ -1,0 +1,9 @@
+/**index.wxss**/
+.tip{
+  width: 80%;
+  padding: 10rpx;
+  border-radius: 30rpx;
+  background-color: #1296db;
+  margin: 10rpx auto;
+  font-size: 0.9rem;
+}

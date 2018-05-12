@@ -1,0 +1,7 @@
+/**app.wxss**/
+@import "weui.wxss";
+
+.container {
+  padding: 5rpx 20rpx;
+
+} 
