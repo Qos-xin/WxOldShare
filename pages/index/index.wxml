@@ -6,6 +6,13 @@
     </swiper-item>
   </block>
 </swiper>
-<view class='tip'>
-  <text>您有{{tip.cookieQuantity}}块饼干，可白拿{{tip.quantity}}件好东西!</text>
+<view class='container'>
+  <view class='tip'>
+    <text>您有{{tip.cookieQuantity}}块饼干，可白拿{{tip.quantity}}件好东西!</text>
+  </view>
+  <view class='group'>
+    <view class='l d' >
+    <text></text>
+    </view>
+  </view>
 </view>
