@@ -6,13 +6,44 @@
     </swiper-item>
   </block>
 </swiper>
-<view class='container'>
-  <view class='tip'>
+<view class='group'>
+ <view class='tip'>
     <text>您有{{tip.cookieQuantity}}块饼干，可白拿{{tip.quantity}}件好东西!</text>
   </view>
+  <view class='category' wx:for="{{category}}">
+    <navigator url=''>{{item.name}}</navigator>
+  </view>
+</view>
+<view class='container'>
   <view class='group'>
-    <view class='l d' >
-    <text></text>
+    <view class='goods' wx:for="{{goods}}">
+      <view>
+        <navigator class='goods-flex'>
+          <view>
+            <image src='{{item.headImage}}' class='head-img'></image>
+            <text>{{item.name}}</text>
+          </view>
+          <text class='goods-city'>{{item.city}}</text>
+        </navigator>
+      </view>
+      <view>
+        <navigator>
+          <image src='{{item.goodsImage}}' mode='aspectFit' class='goods-img'></image>
+        </navigator>
+      </view>
+      <view>
+        <text>{{item.intro}}</text>
+      </view>
+      <view>
+        <navigator class='goods-flex'>
+          <view>
+            <image src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg' class='egg-img'></image>
+            <text class='cookie'>{{item.eggQuantity}}饼干</text>
+          </view>
+
+          <text class='goods-time'>{{item.time}}</text>
+        </navigator>
+      </view>
     </view>
   </view>
 </view>

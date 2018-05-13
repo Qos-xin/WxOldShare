@@ -1,2 +1,12 @@
 <!--pages/my/myPublish.wxml-->
-<text>pages/my/myPublish.wxml</text>
+<view class="weui-panel__bd" wx:for = "{{publish}}">
+  <navigator class="weui-media-box weui-media-box_appmsg">
+    <view class="weui-media-box__hd">
+      <image class="weui-media-box__thumb" src='{{item.img}}'></image>
+    </view>
+    <view class="weui-media-box__bd">
+      <text class="weui-media-box__title">{{item.name}}</text>
+      <text class="weui-media-box__desc">{{item.eggQuantity}}饼干</text>
+    </view>
+  </navigator>
+</view>

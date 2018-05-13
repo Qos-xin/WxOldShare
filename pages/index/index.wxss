@@ -1,9 +1,69 @@
 /**index.wxss**/
-.tip{
+page{background: #f5f5f5}
+.tip {
   width: 80%;
   padding: 10rpx;
   border-radius: 30rpx;
   background-color: #1296db;
   margin: 10rpx auto;
   font-size: 0.9rem;
+  color: #fff;
+  text-align: center
 }
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  background: #fff
+}
+.container .group{background: #f5f5f5}
+.category {
+  width: 180rpx;
+  text-align: center;
+}
+
+.goods {
+  width: 348rpx;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  margin:5rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 5rpx;
+}
+
+.goods>view {
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.head-img {
+  width: 55rpx;
+  height: 55rpx;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+.goods-img {
+  width: 100%;
+  height: 220rpx;
+}
+
+.egg-img {
+  width: 55rpx;
+  height: 55rpx;
+   margin-right: 10rpx;
+   vertical-align: middle;
+}
+
+.goods-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.goods-city{color:#1296db }
+.goods-time{color: #999}
+.goods-city,.goods-time{font-size: 0.85rem;}
+.cookie{color: red}

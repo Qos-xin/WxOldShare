@@ -63,5 +63,6 @@
   </view>
   <view class='container'>
     <text class='weui-msg__desc'>注意：若宝贝支持快递寄送，需要您在有人兑换后自行寄送宝贝。</text>
+    <button class='weui-btn weui-btn_primary'>发布</button>
   </view>
 </view>
