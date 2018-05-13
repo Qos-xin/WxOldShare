@@ -14,8 +14,7 @@ App({
             title: '正在登陆...',
           })
           wx.request({
-            url: 'http://os.qos.xin/api/Account/login?code='+res.code,
-            method: 'POST',
+            url: 'http://os.qos.xin/api/Account/Login?code='+res.code,
             success: function (data) {
               if(data.data.errCode==0){
               wx.setStorage({
