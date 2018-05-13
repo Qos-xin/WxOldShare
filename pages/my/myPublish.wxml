@@ -6,7 +6,7 @@
     </view>
     <view class="weui-media-box__bd">
       <text class="weui-media-box__title">{{item.name}}</text>
-      <text class="weui-media-box__desc">{{item.eggQuantity}}饼干</text>
+      <text class="weui-media-box__desc">{{item.eggQuantity}}饼干0</text>
     </view>
   </navigator>
 </view>
