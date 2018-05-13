@@ -1,1 +1,27 @@
 /* pages/my/myPublish.wxss */
+page{background: #f5f5f5}
+.weui-navbar{position: relative;background: #fff}
+.weui-navbar__item{font-size: 0.8rem;color: #999}
+.weui-panel__bd{background: #fff;margin-bottom: 20rpx}
+.weui-media-box__thumb{width: 150rpx;height: 150rpx;margin-right: 10rpx}
+.weui-media-box__desc{color: red}
+.weui-media-box__desc image{width: 45rpx;height: 45rpx;vertical-align: middle;margin-right: 10rpx}
+.weui-media-box__bd{line-height: 100rpx}
+.weui-btn_default{
+  width:150rpx;
+line-height:60rpx;
+background:yellow;
+text-align:center;
+border-radius:25rpx;
+font-size:0.7rem;
+float: right;
+}
+.btn-wrap{
+padding:20rpx;
+border-top:1rpx solid #ccc;
+overflow: hidden;
+}
+.weui-navbar__item.weui-bar__item_on {
+color:#333;
+border-bottom:1rpx solid yellow;
+}

@@ -5,7 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    message : [
+      {
+        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        name : "影子",
+        img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        time : "2018-05-13",
+        msg : "我要"
+      },
+      {
+        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        name: "影子",
+        img: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+        time: "2018-05-13",
+        msg: "我要"
+      }
+    ]
   },
 
   /**

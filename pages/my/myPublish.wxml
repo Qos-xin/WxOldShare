@@ -1,12 +1,25 @@
 <!--pages/my/myPublish.wxml-->
+<view class='weui-navbar'>
+<view class='weui-navbar__item weui-bar__item_on' bindtap="tapName" id="on" wx:if = '{{activeTap == "on"}}'>在架</view>
+<view class='weui-navbar__item' bindtap="tapName" id="on" wx:else>在架</view>
+<view class='weui-navbar__item weui-bar__item_on' bindtap="tapName" id="off" wx:if = '{{activeTap == "off"}}'>已下架</view>
+<view class='weui-navbar__item' bindtap="tapName" id="off" wx:else>已下架</view>
+</view>
 <view class="weui-panel__bd" wx:for = "{{publish}}">
-  <navigator class="weui-media-box weui-media-box_appmsg">
+  <navigator class="weui-media-box weui-media-box_appmsg" url=''>
     <view class="weui-media-box__hd">
       <image class="weui-media-box__thumb" src='{{item.img}}'></image>
     </view>
     <view class="weui-media-box__bd">
       <text class="weui-media-box__title">{{item.name}}</text>
-      <text class="weui-media-box__desc">{{item.eggQuantity}}饼干0</text>
+      <view class="weui-media-box__desc">
+       <image  src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'></image>
+      <text>{{item.eggQuantity}}饼干</text>
+      </view>
     </view>
   </navigator>
+  <view class='btn-wrap'>
+   <navigator class="weui-btn weui-btn_mini weui-btn_default" wx:if="{{item.state == true}}">下架</navigator>
+   <navigator class="weui-btn weui-btn_mini weui-btn_default" wx:elif="{{item.state == false}}">重新上架</navigator>
+  </view>
 </view>

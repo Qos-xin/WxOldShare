@@ -5,14 +5,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    activeTap : "on",
+    publish : []
+  },
+  tapName: function (event) {
+    this.setData({
+      activeTap : event.target.id
+    })
+    if(event.target.id == 'on'){
+      this.setData({
+        publish: [
+          {
+            img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+            name: "榨汁机",
+            eggQuantity: "1",
+            state: true
+          },
+          {
+            img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+            name: "榨汁机",
+            eggQuantity: "1",
+            state: true
+          }
+        ]})
+    }else{
+      this.setData({
+        publish: [
+          {
+            img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+            name: "榨汁机",
+            eggQuantity: "1",
+            state: false
+          }
+        ],
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      publish: [
+        {
+          img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+          name: "榨汁机",
+          eggQuantity: "1",
+          state: true
+        },
+        {
+          img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
+          name: "榨汁机",
+          eggQuantity: "1",
+          state: true
+        }
+      ]})
   },
 
   /**

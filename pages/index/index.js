@@ -108,13 +108,6 @@ Page({
         eggQuantity: "250",
         time: "三天前"
       },
-    ],
-    publish : [
-      {
-        img: "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
-        name : "榨汁机",
-        eggQuantity : "1"
-      }
     ]
 
   },
