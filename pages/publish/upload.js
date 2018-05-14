@@ -6,21 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    name:"",
+    description:"",
     images: [],
-    address: null,
-    array: [
+    isNew:true,    
+    category: [
       { name: "奶粉", val: 1 },
       { name: "玩具", val: 2 }
     ],
-    index: 0,
-
-    loadArray: [
-      "1kg以下",
-      "1-2kg",
-      "2-3kg"
-    ],
-    loadIndex: 0,
-
+    categoryId: 0,
+    price:0,
+    address: null,
   },
   selectFile: function (e) {
     var self=this;
@@ -28,7 +24,7 @@ Page({
     wx.chooseImage({
       success: function (res) {
         self.setData({
-          images:self.data.images.concat(res.tempFilePaths)
+          images:res.tempFilePaths
         });
       },
     })
@@ -46,7 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
