@@ -32,6 +32,30 @@ onGetAddress : function(){
     }
   })
 },
+  onDeleteAddress: function(event){
+    var self=this;
+    var id=event.target.id
+    wx.showLoading({
+      title: '正在删除...',
+    })
+    wx.request({
+      method : "POST",
+      url: 'http://os.qos.xin/api/User/DeleteContect/'+id,
+      header : {
+        Authorization: wx.getStorageSync('token')
+      },
+      success : function(res){
+        if (res.data.code == 0) {
+          wx.showToast({ "title": "删除成功"});
+          self.onGetAddress();
+        }
+      },fail : function(res){
+
+      },complete : function(res){
+        wx.hideLoading();
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

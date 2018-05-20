@@ -20,7 +20,7 @@ Page({
         "Authorization": token
       },
       success: function (data) {
-        if (data.data.errCode == 0) {
+        if (data.data.code == 0) {
           wx.showToast({
             title: '添加成功',
             icon: "success"

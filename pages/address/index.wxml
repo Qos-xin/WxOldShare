@@ -9,7 +9,7 @@
   </view>
   <view class='btn-wrap'>
     <button class='choose-btn weui-btn weui-btn_mini weui-btn_default'>选择地址</button>
-      <text class=''>删除</text>
+      <text class='' id='{{item.id}}' bindtap='onDeleteAddress'>删除</text>
   </view>
 </view>
 <navigator url='/pages/address/add'class='add-btn'>新建地址</navigator>
