@@ -1,28 +1,30 @@
 <!--pages/address/add.wxml-->
-<view class='weui-cells weui-cells_form container'>
-  <view class='weui-cell'>
-    <view class='weui-cell_hd'>
-      <text>收件人</text>
+<form bindsubmit="onSubmit">
+  <view class='weui-cells weui-cells_form container'>
+    <view class='weui-cell'>
+      <view class='weui-cell_hd'>
+        <text>收件人</text>
+      </view>
+      <view class=' weui-cell_bd '>
+        <input class='weui-input' placeholder='姓名' value='{{name}}' name = "name"></input>
+      </view>
     </view>
-    <view class=' weui-cell_bd '>
-      <input class='weui-input' placeholder='姓名' value='{{name}} '></input>
+    <view class='weui-cell'>
+      <view class='weui-cell_hd'>
+        <text>手机号</text>
+      </view>
+      <view class=' weui-cell_bd '>
+        <input class='weui-input' placeholder='手机号或者电话号码' name = "phone" value='{{phone}} '></input>
+      </view>
     </view>
+    <view class='weui-cell'>
+      <view class='weui-cell_hd'>
+        <text>详细地址</text>
+      </view>
+      <view class=' weui-cell_bd '>
+        <input class='weui-input' placeholder='请具体到街道、门牌号' value='{{address}} ' name = "address"></input>
+      </view>
+    </view>
+    <button class='weui-btn weui-btn_primary' form-type='submit'>保存</button>
   </view>
-   <view class='weui-cell'>
-    <view class='weui-cell_hd'>
-      <text>手机号</text>
-    </view>
-    <view class=' weui-cell_bd '>
-      <input class='weui-input' placeholder='手机号或者电话号码' value='{{phone}} '></input>
-    </view>
-  </view>
-   <view class='weui-cell'>
-    <view class='weui-cell_hd'>
-      <text>详细地址</text>
-    </view>
-    <view class=' weui-cell_bd '>
-      <input class='weui-input' placeholder='请具体到街道、门牌号' value='{{address}} '></input>
-    </view>
-  </view>
-<button class='weui-btn weui-btn_primary' bindtap='saveContect'>保存</button>
-</view>
+</form>

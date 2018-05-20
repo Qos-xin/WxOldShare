@@ -5,19 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: "",
-    phone: "",
-    address: ""
+  
   },
-  saveContect: function (event) {
-    var token = wx.getStorageSync("token")
+  onSubmit: function (event) {
+    var that = this;  
+    var token = wx.getStorageSync("token");
+    var formData = event.detail.value;
+    console.log("hah" + JSON.stringify(formData))
     wx.request({
       url: 'http://os.qos.xin/api/User/AddContect',
-      data: {
-        name: this.data.name,
-        phone: this.data.phone,
-        address: this.data.address
-      },
+      data: formData,
       method: "POST",
       header: {
         "Authorization": token

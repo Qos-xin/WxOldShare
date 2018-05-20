@@ -1,2 +1,15 @@
 <!--pages/address/index.wxml-->
-<text>pages/address/index.wxml</text>
+<view wx:for="{{address}}" class="address-wrap">
+  <view class='infor-top'>
+    <view>
+      <text>{{item.name}}</text>
+      <text>{{item.phone}}</text>
+    </view>
+    <view>{{item.address}}</view>
+  </view>
+  <view class='btn-wrap'>
+    <button class='choose-btn weui-btn weui-btn_mini weui-btn_default'>选择地址</button>
+      <text class=''>删除</text>
+  </view>
+</view>
+<navigator url='/pages/address/add'class='add-btn'>新建地址</navigator>
