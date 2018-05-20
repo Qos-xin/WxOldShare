@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/address/add",
     "pages/index/index",
     "pages/publish/upload",
     "pages/publish/uploadSuccess",  
     "pages/address/index",
+    "pages/address/add",
     "pages/my/my",
     "pages/my/myReceive",
     "pages/my/mySend",
