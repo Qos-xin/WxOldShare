@@ -1,10 +1,10 @@
 <!--pages/publish/upload.wxml-->
 <view class='container'>
   <view>
-    <input class='weui-input' placeholder='请输入闲置物品名称' focus></input>
+    <input class='weui-input' value='{{name}}' placeholder='请输入闲置物品名称' focus></input>
   </view>
   <view>
-    <textarea class='weui-textarea' placeholder='请简要描述一下物品的细节，新旧程度，型号尺码等'></textarea>
+    <textarea class='weui-textarea' value='{{description}}' placeholder='请简要描述一下物品的细节，新旧程度，型号尺码等'></textarea>
   </view>
   <view class='weui-uploader'>
     <view class='weui-uploader__hd'>
@@ -24,37 +24,23 @@
   <view class='weui-cell weui-cell_access'>
     <view class='weui-cell__bd'>是否全新</view>
     <view class='weui-cell__ft'>
-      <switch></switch>
+      <switch checked="{{isNew}}"></switch>
     </view>
 
   </view>
   <view class='weui-cell weui-cell_access'>
     <view class='weui-cell__bd'>分类</view>
-    <picker bindchange='onPickerChange' value='{{index}}' range='{{array}}' range-key='name'>
+    <picker bindchange='onPickerChange' value='{{categoryId}}' range='{{category}}' range-key='name'>
       <view class='picker'>
-        <view class='weui-cell__ft'>{{array[index].name}}</view>
+        <view class='weui-cell__ft'>{{category[categoryId].name}}</view>
       </view>
     </picker>
   </view>
   <view class='weui-cell weui-cell_access'>
     <view class='weui-cell__bd'>饼干(块)</view>
     <view class='weui-cell__ft'>
-      <input class='weui-input' placeholder='请输入整数'></input>
+      <input class='weui-input' value='{{price}}' placeholder='请输入整数'></input>
     </view>
-  </view>
-  <view class='weui-cell weui-cell_access'>
-    <view class='weui-cell__bd'>支持发货方式</view>
-    <picker bindchange='onPickerChange' value='{{index}}' range='{{array}}' range-key='name'>
-      <view class='picker'>
-        <view class='weui-cell__ft'>{{array[index].name}}</view>
-      </view>
-    </picker>
-  </view>
-  <view class='weui-cell weui-cell_access'>
-    <view class='weui-cell__bd'>商品重量</view>
-    <picker bindchange='onLoadPickerChange' value='{{loadIndex}}' range='{{loadArray}}'>
-      <view class='weui-cell__ft weui-cell_ft_in-access'>{{loadArray[loadIndex]}}</view>
-    </picker>
   </view>
   <view class='weui-cell weui-cell_access'>
     <view class='weui-cell__bd'>快递取货地址</view>
