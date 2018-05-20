@@ -22,16 +22,39 @@ Page({
     loadIndex: 0,
 
   },
-  selectFile: function (e) {
-    var self=this;
+  onSelectFile: function (e) {
+    var self = this;
     console.log(this.data.images.length);
     wx.chooseImage({
       success: function (res) {
         self.setData({
-          images:self.data.images.concat(res.tempFilePaths)
+          images: self.data.images.concat(res.tempFilePaths)
         });
       },
     })
+  },
+  onPublish: function (e) {
+    wx.showLoading({ "title": "上传图片中"})
+    const uploadTask = wx.uploadFile({
+      url: 'http://os.qos.xin/api/file/upload',
+      filePath: this.data.images[0],
+      name: 'wxUploadFile',
+      header:{"Authorization":wx.getStorageSync("token")},
+      success: function (res) {
+        wx.showToast({"title":"上传成功"});
+      },
+      fail: function (res) {
+        wx.showToast({"title":"上传失败"});
+      },
+      complete: function (res) {
+        console.log("上传完成")
+        wx.hideLoading();
+      }
+
+    })
+    uploadTask.onProgressUpdate((res) => {
+      console.log(res.progress);
+    });
   },
   onPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
