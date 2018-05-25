@@ -1,6 +1,11 @@
 /* pages/publish/upload.wxss */
 @import "/weui.wxss";
 
+.weui-uploader__files {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .uploadBtn {
   background-color: #ccc;
   display: inline-block;
@@ -19,4 +24,21 @@
 
 .uploadBtn view {
   text-align: center;
+}
+
+.imageBox {
+  position: relative;
+  width: 77px;
+  height: 77px;
+}
+
+.imageBox image {
+  width: 77px;
+  height: 77px;
+}
+
+.imageProgress {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }

@@ -5,38 +5,33 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    var token = wx.getStorageSync('token');
-    if (!token) {
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          console.log(res.code);
-          wx.showLoading({
-            title: '正在登陆...',
-          })
-          wx.request({
-            url: 'http://os.qos.xin/api/Account/Login?code=' + res.code,
-            success: function (data) {
-              if (data.data.errCode == 0) {
-                wx.setStorage({
-                  key: 'token',
-                  data: "Bearer " + data.data.result
-                })
-              }
-            },
-            fail: function (data) {
-              wx.showToast({
-                title: '登陆失败',
-              })
-            },
-            complete: function (data) {
-              wx.hideLoading();
-            }
-          })
-        }
-      })
 
-    }
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res.code);
+        wx.showLoading({
+          title: '正在登陆...',
+        })
+        wx.request({
+          url: 'http://os.qos.xin/api/Account/Login?code=' + res.code,
+          success: function (data) {
+            if (data.statusCode == 200 && data.data.code == 0) {
+              let token = "Bearer " + data.data.result;
+              wx.setStorageSync('token', token);
+            }
+          },
+          fail: function (data) {
+            wx.showToast({
+              title: '登陆失败',
+            })
+          },
+          complete: function (data) {
+            wx.hideLoading();
+          }
+        })
+      }
+    })
     // 获取用户信息
     //  wx.getSetting({
     //   success: res => {
@@ -60,5 +55,7 @@ App({
   },
   globalData: {
     userInfo: null
-  }
+  },
+  
+
 })

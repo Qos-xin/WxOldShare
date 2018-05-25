@@ -1,60 +1,95 @@
 // pages/publish/upload.js
 var app = getApp();
+const util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    name:"",
-    description:"",
+    name: "",
+    description: "",
     images: [],
-    isNew:true,    
-    category: [
-      { name: "奶粉", val: 1 },
-      { name: "玩具", val: 2 }
-    ],
-    categoryId: 0,
-    price:0,
-    address: null,
+    isNew: true,
+    category: [],
+    categoryId: null,
+    price: null,
+    address: null
   },
   onSelectFile: function (e) {
     var self = this;
     console.log(this.data.images.length);
     wx.chooseImage({
       success: function (res) {
+        var imgArr = [];
         self.setData({
-          images: self.data.images.concat(res.tempFilePaths)
+          images: self.data.images.concat(res.tempFiles)
         });
+        var i = 0;
+        self.data.images.map(function (t) {
+          t.index = i++;
+        })
       },
     })
   },
   onPublish: function (e) {
-    wx.showLoading({ "title": "上传图片中"})
-    const uploadTask = wx.uploadFile({
-      url: 'http://os.qos.xin/api/file/upload',
-      filePath: this.data.images[0],
-      name: 'wxUploadFile',
-      header:{"Authorization":wx.getStorageSync("token")},
-      success: function (res) {
-        wx.showToast({"title":"上传成功"});
-      },
-      fail: function (res) {
-        wx.showToast({"title":"上传失败"});
-      },
-      complete: function (res) {
-        console.log("上传完成")
-        wx.hideLoading();
-      }
-
+    var self = this;
+    var formData = e.detail.value;
+    console.log("开始上传图片")
+    wx.showLoading({ "title": "上传图片中" })
+    this.uploadImage().then(() => {
+      wx.hideLoading();
+      util.http.post("/api/Product/Publish", formData)
+        .then(() => {
+          wx.hideLoading();
+          wx.redirectTo({
+            url: '/pages/publish/uploadSuccess?id=' + res.data.result,
+          })
+        }, () => {
+          wx.showToast({
+            title: '发布失败,请重新尝试.',
+          })
+        })
     })
-    uploadTask.onProgressUpdate((res) => {
-      console.log(res.progress);
-    });
   },
-  onPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({ index: e.detail.value })
+  getSign: function (callback) {
+    return util.http.get("/api/Oss/GetSign")
+      .then((data) => {
+        wx.setStorageSync("sign", data);
+        return data;
+      }, (err) => {
+        console.log("获取oss签名失败");
+      })
+  },
+  uploadImage: function () {
+    var promise;
+    var that=this;
+    for (var i = 0; i < this.data.images.length; i++) {
+      (function () {
+        var image = that.data.images[i];
+        var prom = util.http.uploadImage(that, image);
+        promise = promise ? promise.then(prom) : prom;
+      })()
+    }
+    return promise;
+  },
+
+  getCategory: function () {
+    var that = this;
+    return util.http.get("/api/Product/GetCategory")
+      .then(function (data) {
+        that.setData({
+          category: data
+        });
+      }, function (res) {
+        wx.showToast({
+          title: '加载分类失败',
+        })
+      })
+  },
+  onCategoryPickerChange: function (e) {
+    console.log('选择分类值为:', e.detail.value)
+    this.setData({ categoryId: e.detail.value })
 
   },
   onLoadPickerChange: function (e) {
@@ -65,7 +100,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getCategory();
+    this.getSign();
   },
 
   /**
