@@ -15,8 +15,10 @@ const formatNumber = n => {
 }
 const GenerateFileName = fileName => {
   var ext = /\.\w{3,4}$/.exec(fileName);
+
   var date = formatTime(new Date()).split(" ")[0];
-  var fileName = "Product/" + date + "/" + date.valueOf() + parseInt(Math.random() * 10000000) + ext;
+  console.log(date);
+  var fileName = "Product/" + date + "/" + new Date().valueOf() + parseInt(Math.random() * 10000000) + ext;
   console.log(fileName);
   return fileName;
 }
@@ -119,7 +121,8 @@ const http = (function () {
         },
         success: function (res) {
           if (res.statusCode == 200) {
-            image.url = host + "/" + fileName;
+            base.data.images[image.index].url = host + "/" + fileName;
+            console.log(base.data.images[image.index].url)
             resolve(image);
           }
         },
@@ -130,8 +133,8 @@ const http = (function () {
       });
       uploadTask.onProgressUpdate((res) => {
         console.log("[" + image.index + "]]" + res.progress);
-        image.percent = res.progress;
-        console.log("【"+image.index+"】了看法"+base.data.images[image.index].percent)
+        base.data.images[image.index].percent = res.progress;
+        console.log("【" + image.index + "】了看法" + base.data.images[image.index].percent)
         base.setData({
           images: base.data.images
         })

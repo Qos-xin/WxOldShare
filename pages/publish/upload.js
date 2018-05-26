@@ -35,6 +35,9 @@ Page({
   onPublish: function (e) {
     var self = this;
     var formData = e.detail.value;
+    formData.images=this.data.images.map(function(t){
+      return t.url;
+    })
     console.log("开始上传图片")
     wx.showLoading({ "title": "上传图片中" })
     this.uploadImage().then(() => {
