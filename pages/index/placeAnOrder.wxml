@@ -1,0 +1,60 @@
+<!--pages/index/placeAnOrder.wxml-->
+<view class='container'>
+  <view class='weui-cells'>
+    <view class='weui-cell weui-cell_access'>
+      <view class='weui-cell__ft'>
+        <navigator wx:if="{{address==null}}" class='weui-cell__ft weui-cell_ft_in-access' url='/pages/address/index'>选择地址</navigator>
+        <navigator wx:else class='weui-cell__ft weui-cell_ft_in-access' url='/pages/address/index'>{{address.name}}</navigator>
+        <input hidden='true' name="contectId" value='{{address.id}}'></input>
+      </view>
+    </view>
+    <view class='weui-cell '>
+      <view class='weui-cell__bd'>
+        <text>联系方式</text>
+      </view>
+      <view class='weui-cell__ft'>
+        <text>{{address.phone}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='weui-media-box weui-media-box_appmsg'>
+    <view class='weui-media-box__hd'>
+      <view class='weui-media-box__thumb'>
+        <image src='{{product.images[0]}}' style='width:150rpx;height:150rpx;'></image>
+      </view>
+    </view>
+    <view class='weui-media-box__bd'>
+      <text class='weui-media-box__title'>{{product.name}}</text>
+      <text class='weui-media-box__desc'>{{product.price}}块饼干</text>
+    </view>
+  </view>
+</view>
+<view class='weui-cells'>
+  <view class='weui-cell'>
+    <view class='weui-cell__bd'>
+      <text>当前拥有饼干</text>
+    </view>
+    <view class='weui-cell__ft'>
+      <text>{{appUser.points}}块</text>
+    </view>
+  </view>
+  <view class='weui-cell'>
+    <view class='weui-cell__bd'>
+      <text>本单消耗饼干</text>
+    </view>
+    <view class='weui-cell__ft'>
+      <text>{{product.price}}块</text>
+    </view>
+  </view>
+  <view class='weui-cell'>
+    <view class='weui-cell__bd'>
+      <text>扣完剩余饼干</text>
+    </view>
+    <view class='weui-cell__ft'>
+      <text>{{appUser.points-product.price}}块</text>
+    </view>
+  </view>
+</view>
+<view class='bottomBar'>
+  <button class='weui-btn' type='warn' bindtap='placeAnOrder'>确定兑换</button>
+</view>

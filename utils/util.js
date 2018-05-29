@@ -45,6 +45,7 @@ const http = (function () {
               })
             }
           } else if (res.statusCode == 401) {
+            wx.removeStorageSync("token");
             wx.showToast({
               title: '未登录',
             })
@@ -68,17 +69,18 @@ const http = (function () {
       wx.request({
         url: url,
         header: {
-          Authorizetion: token
+          Authorization: token
         },
         method: "POST",
-        data: data,
+        data:JSON.stringify(data),
         success: function (res) {
           if (res.statusCode == 200) {
             if (res.data.code == 0) {
               resolve(res.data.result);
             } else {
-              wx.showToast({
-                title: res.data.msg,
+              wx.showModal({
+                title: '发生错误',
+                content: res.data.msg,
               })
             }
           } else if (res.statusCode == 401) {

@@ -53,7 +53,7 @@
       <view class='weui-cell__bd'>快递取货地址</view>
       <navigator wx:if="{{address==null}}" class='weui-cell__ft weui-cell_ft_in-access' url='/pages/address/index'>选择地址</navigator>
       <navigator wx:else class='weui-cell__ft weui-cell_ft_in-access' url='/pages/address/index'>{{address.name}}</navigator>
-      <input hidden='true' name="contectId" value='{{address.Id}}'></input>
+      <input hidden='true' name="contectId" value='{{address.id}}'></input>
     </view>
     <view class='container'>
       <text class='weui-msg__desc'>注意：若宝贝支持快递寄送，需要您在有人兑换后自行寄送宝贝。</text>

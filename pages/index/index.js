@@ -1,12 +1,12 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const util = require('../../utils/util.js')
 Page({
   data: {
     banner: {
-      indicatorDots: false,
-      autoplay: false,
+      indicatorDots: true,
+      autoplay: true,
       interval: 5000,
       duration: 1000,
       imgUrls: [
@@ -19,96 +19,8 @@ Page({
       cookieQuantity: 123,
       quantity: 100
     },
-    category: [
-      {
-        name: '动植物',
-        value: 1
-      },
-      {
-        name: '动植物',
-        value: 2
-      },
-      {
-        name: '动植物',
-        value: 3
-      },
-      {
-        name: '动植物',
-        value: 4
-      },
-      {
-        name: '动植物',
-        value: 5
-      },
-      {
-        name: '动植物',
-        value: 6
-      },
-      {
-        name: '动植物',
-        value: 7
-      },
-      {
-        name: '动植物',
-        value: 8
-      },
-    ],
-    goods: [
-      {
-        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        name: "臭臭",
-        city: "北京市",
-        goodsImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        intro: "苏泊尔榨汁机家用果汁机",
-        eggQuantity: "250",
-        time: "三天前"
-      },
-      {
-        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        name: "臭臭",
-        city: "北京市",
-        goodsImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        intro: "苏泊尔榨汁机家用果汁机",
-        eggQuantity: "250",
-        time: "三天前"
-      },
-      {
-        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        name: "臭臭",
-        city: "北京市",
-        goodsImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        intro: "苏泊尔榨汁机家用果汁机",
-        eggQuantity: "250",
-        time: "三天前"
-      },
-      {
-        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        name: "臭臭",
-        city: "北京市",
-        goodsImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        intro: "苏泊尔榨汁机家用果汁机",
-        eggQuantity: "250",
-        time: "三天前"
-      },
-      {
-        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        name: "臭臭",
-        city: "北京市",
-        goodsImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        intro: "苏泊尔榨汁机家用果汁机",
-        eggQuantity: "250",
-        time: "三天前"
-      },
-      {
-        headImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        name: "臭臭",
-        city: "北京市",
-        goodsImage: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        intro: "苏泊尔榨汁机家用果汁机",
-        eggQuantity: "250",
-        time: "三天前"
-      },
-    ]
+    category: [],
+    goods: []
 
   },
   changeIndicatorDots: function (e) {
@@ -130,5 +42,31 @@ Page({
     this.setData({
       duration: e.detail.value
     })
+  },
+  getCategory: function () {
+    var that = this;
+    return util.http.get("/api/Product/GetCategory")
+      .then(function (data) {
+        that.setData({
+          category: data
+        });
+      }, function (res) {
+        wx.showToast({
+          title: '加载分类失败',
+        })
+      })
+  },
+  getProduct:function(){
+    var that=this;
+    util.http.get("/api/Product/GetProductList")
+    .then(function(data){
+      that.setData({
+        goods:data
+      });
+    })
+  },
+  onLoad: function () {
+    this.getCategory();
+    this.getProduct();
   }
 })

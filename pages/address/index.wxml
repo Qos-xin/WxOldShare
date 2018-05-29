@@ -8,7 +8,7 @@
     <view>{{item.address}}</view>
   </view>
   <view class='btn-wrap'>
-    <button class='choose-btn weui-btn weui-btn_mini weui-btn_default' bindtap='onSelectAddress' id='{{item.id}}'>选择地址</button>
+    <button class='choose-btn weui-btn weui-btn_mini weui-btn_default' bindtap='onSelectAddress' data-index='{{index}}'>选择地址</button>
     <text class='' id='{{item.id}}' bindtap='onDeleteAddress'>删除</text>
   </view>
 </view>

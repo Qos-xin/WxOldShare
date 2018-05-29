@@ -1,11 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+  onLogin:function(){
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -32,6 +27,25 @@ App({
         })
       }
     })
+  },
+  onLaunch: function () {
+    var that=this;
+    // 展示本地存储能力
+    var logs = wx.getStorageSync('logs') || []
+    logs.unshift(Date.now())
+    wx.setStorageSync('logs', logs)
+    wx.checkSession({
+      success: function () {
+        var token=wx.getStorageSync("token");
+        if(!token){
+          that.onLogin();
+        }
+      },
+      fail: function () {
+        that.onLogin();
+      }
+    })
+
     // 获取用户信息
     //  wx.getSetting({
     //   success: res => {
@@ -56,6 +70,6 @@ App({
   globalData: {
     userInfo: null
   },
-  
+
 
 })

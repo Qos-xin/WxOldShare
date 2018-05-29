@@ -1,45 +1,47 @@
 <!--pages/my/my.wxml-->
 
-  <view class='myHeader'>
-    <view class="userinfo">
-      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <block wx:else>
+<view class='myHeader'>
+  <view class="userinfo">
+    <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+    <open-data type="userNickName"></open-data>
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" lang="zh_CN"> 使用微信登录 </button>
+    <block wx:else>
+      <view class='userIcon'>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
-    </view>
-    <view class='userCount'>
-      <text>当前拥有{{quantity}}个饼干</text>
-    </view>
+      </view>
+      
+    </block> -->
   </view>
-  <view class='page-section page-section-spacing'>
-    <view class='weui-cells weui-cells_after-title'>
-      <navigator class='weui-cell weui-cell_access' url='/pages/my/myMessage' >
-        <view class='weui-cell__bd'>我的消息</view>
-        <view class='weui-cell__ft weui-cell__ft_in-access'></view>
-      </navigator>
-      <navigator class='weui-cell weui-cell_access' url='/pages/my/myPublish' >
-        <view class='weui-cell__bd'>我发布的</view>
-        <view class='weui-cell__ft weui-cell__ft_in-access'></view>
-      </navigator>
-      <navigator class='weui-cell weui-cell_access' url='/pages/my/mySend' >
-        <view class='weui-cell__bd'>我送出的</view>
-        <view class='weui-cell__ft weui-cell__ft_in-access'></view>
-      </navigator>
-      <navigator class='weui-cell weui-cell_access' url='/pages/my/myReceive' >
-        <view class='weui-cell__bd'>我兑换的</view>
-        <view class='weui-cell__ft weui-cell__ft_in-access'></view>
-      </navigator>
-      <navigator class='weui-cell weui-cell_access' url='/pages/my/myFavorite' >
-        <view class='weui-cell__bd'>我的收藏</view>
-        <view class='weui-cell__ft weui-cell__ft_in-access'></view>
-      </navigator>
-      <navigator class='weui-cell weui-cell_access' url='/pages/my/about' >
-        <view class='weui-cell__bd'>关于我们</view>
-        <view class='weui-cell__ft weui-cell__ft_in-access'></view>
-      </navigator>
-    </view>
+  <view class='userCount'>
+    <text>当前拥有{{userInfo.points}}个饼干</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+</view>
+<view class='page-section page-section-spacing'>
+  <view class='weui-cells weui-cells_after-title'>
+    <navigator class='weui-cell weui-cell_access' url='/pages/my/myMessage'>
+      <view class='weui-cell__bd'>我的消息</view>
+      <view class='weui-cell__ft weui-cell__ft_in-access'></view>
+    </navigator>
+    <navigator class='weui-cell weui-cell_access' url='/pages/my/myPublish'>
+      <view class='weui-cell__bd'>我发布的</view>
+      <view class='weui-cell__ft weui-cell__ft_in-access'></view>
+    </navigator>
+    <navigator class='weui-cell weui-cell_access' url='/pages/my/mySend'>
+      <view class='weui-cell__bd'>我送出的</view>
+      <view class='weui-cell__ft weui-cell__ft_in-access'></view>
+    </navigator>
+    <navigator class='weui-cell weui-cell_access' url='/pages/my/myReceive'>
+      <view class='weui-cell__bd'>我兑换的</view>
+      <view class='weui-cell__ft weui-cell__ft_in-access'></view>
+    </navigator>
+    <navigator class='weui-cell weui-cell_access' url='/pages/my/myFavorite'>
+      <view class='weui-cell__bd'>我的收藏</view>
+      <view class='weui-cell__ft weui-cell__ft_in-access'></view>
+    </navigator>
+    <navigator class='weui-cell weui-cell_access' url='/pages/my/about'>
+      <view class='weui-cell__bd'>关于我们</view>
+      <view class='weui-cell__ft weui-cell__ft_in-access'></view>
+    </navigator>
   </view>
+</view>

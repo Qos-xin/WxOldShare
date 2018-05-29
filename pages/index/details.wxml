@@ -1,0 +1,57 @@
+<!--pages/index/details.wxml-->
+<scroll-view>
+  <swiper indicator-dots='{{banner.indicatorDots}}' autoplay='{{banner.autoplay}}' duration='{{banner.duration}}' interval='{{banner.interval}}'>
+    <block wx:for="{{product.images}}">
+      <swiper-item>
+        <image src='{{item}}' class='swiper-image'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="container">
+    <view class=''>
+      <image src='/images/cookie.png' class='egg-img'></image>{{product.price}}个饼干</view>
+    <view>{{product.userinfo.province}}</view>
+    <view>
+      <view>{{product.name}}</view>
+      <view>{{product.description}}</view>
+    </view>
+    <view class='comment'>
+      <image src='{{product.userInfo.icon}}' class="icon"></image>
+      <view class='comment-body'>
+        <text class='comment-title'>{{product.userInfo.nickName}}</text>
+        <text class='comment-footer'>{{product.userInfo.province}}</text>
+      </view>
+    </view>
+
+    <view class='weui-panel_bd'>
+      <view class='weui-cells__title'>
+        <text>评论</text>
+      </view>
+
+      <form bindsubmit='postComment'>
+        <view class='comment'>
+          <view class='icon'>
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <input name="comment" class="weui-input" placeholder='评论一下吧' value='{{commentContent}}'></input>
+          <button type='default' size='mini' form-type='submit'>立即评论</button>
+        </view>
+      </form>
+      <view class='comment' wx:for="{{comment}}">
+        <image class="icon" src='{{item.userInfo.icon}}'></image>
+        <view class='comment-body'>
+          <text class='comment-title'>{{item.userInfo.nickName}}</text>
+          <text class='comment-content'>{{item.comment}}</text>
+          <text class='comment-footer'>{{item.cTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class='bottomBar'>
+  <view class='favorite'>
+    <text wx:if="isCollecting">收藏</text>
+    <text else>已收藏</text>
+  </view>
+  <navigator class='link' url='/pages/index/placeAnOrder?id={{product.id}}'>兑换</navigator>
+</view>

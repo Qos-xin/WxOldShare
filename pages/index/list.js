@@ -1,27 +1,27 @@
-// pages/my/mySend.js
-const util = require("../../utils/util.js")
+// pages/index/list.js
+const util=require("../../utils/util.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    order: []
+    goods: []
   },
-  getMySend() {
+  getProduct: function (id) {
     var that = this;
-    util.http.get("/api/Order/GetMySend")
-      .then(data => {
+    util.http.get("/api/Product/GetProductList?productCategory=" + id)
+      .then(function (data) {
         that.setData({
-          order: data
-        })
+          goods: data
+        });
       })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMySend();
+    this.getProduct(options.id);
   },
 
   /**

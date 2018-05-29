@@ -1,11 +1,11 @@
-<!--pages/publish/uploadSuccess.wxml-->
+<!--pages/index/placeAnOrderSuccess.wxml-->
 <view class='weui-msg'>
   <view class="weui-msg__icon-area">
     <icon type="success" size="93"></icon>
   </view>
   <view class='weui-msg__text-area'>
     <view class='weui-msg__title'>操作成功</view>
-    <view class='weui-msg__desc'>发布成功,请到我发布的查看!</view>
+    <view class='weui-msg__desc'>下单成功,请到我兑换的查看!</view>
   </view>
   <!-- <view class='weui-opr-area'>
     <view class='weui-btn-area'>

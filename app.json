@@ -1,6 +1,10 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/index/list",
+    "pages/index/details",
+    "pages/index/placeAnOrder",
+    "pages/index/placeAnOrderSuccess",
     "pages/publish/upload",
     "pages/publish/uploadSuccess",  
     "pages/address/index",
@@ -15,9 +19,10 @@
     "pages/logs/logs"
   ],
   "window":{
+    "backgroundColor": "#666",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "分享会",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {

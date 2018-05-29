@@ -32,11 +32,18 @@ Page({
       }
     })
   },
-  onSelectAddress:function(event){
-    var self=this;
-    var id=event.target.id;
+  onSelectAddress: function (event) {
+    var that = this;
+    var index = event.target.dataset.index;
+    var arr = getCurrentPages();
     wx.navigateBack({
-      delta:-1,
+      delta: 1,
+      success: function (res) {
+        var addr = that.data.address[index];
+        arr[arr.length - 2].setData({
+          address: addr
+        })
+      }
     })
   },
   onDeleteAddress: function (event) {

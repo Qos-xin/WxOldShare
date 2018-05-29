@@ -14,7 +14,8 @@ Page({
     category: [],
     categoryId: null,
     price: null,
-    address: null
+    address: null,
+    contectId: null
   },
   onSelectFile: function (e) {
     var self = this;
@@ -33,20 +34,21 @@ Page({
     })
   },
   onPublish: function (e) {
-    var self = this;
-    var formData = e.detail.value;
-    formData.images=this.data.images.map(function(t){
-      return t.url;
-    })
+    var that = this;
     console.log("开始上传图片")
     wx.showLoading({ "title": "上传图片中" })
     this.uploadImage().then(() => {
       wx.hideLoading();
+      var formData = e.detail.value;
+      formData.images = this.data.images.map(function (t) {
+        return t.url;
+      })
+      console.log("地址编号为:" + that.data.contectId);
       util.http.post("/api/Product/Publish", formData)
-        .then(() => {
+        .then((data) => {
           wx.hideLoading();
-          wx.redirectTo({
-            url: '/pages/publish/uploadSuccess?id=' + res.data.result,
+          wx.navigateTo({
+            url: '/pages/publish/uploadSuccess?id=' + data,
           })
         }, () => {
           wx.showToast({
@@ -66,7 +68,7 @@ Page({
   },
   uploadImage: function () {
     var promise;
-    var that=this;
+    var that = this;
     for (var i = 0; i < this.data.images.length; i++) {
       (function () {
         var image = that.data.images[i];
@@ -117,7 +119,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function (options) {
 
   },
 

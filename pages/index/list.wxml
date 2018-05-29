@@ -1,20 +1,5 @@
-<!--index.wxml-->
-<swiper indicator-dots='{{banner.indicatorDots}}' autoplay='{{banner.autoplay}}' duration='{{banner.duration}}' interval='{{banner.interval}}'>
-  <block wx:for="{{banner.imgUrls}}">
-    <swiper-item>
-      <image src='{{item}}' class='swiper-image'></image>
-    </swiper-item>
-  </block>
-</swiper>
+<!--pages/index/list.wxml-->
 <view class='container'>
-  <view class='group'>
-    <view class='tip'>
-      <text>您有{{tip.cookieQuantity}}块饼干，可白拿{{tip.quantity}}件好东西!</text>
-    </view>
-    <view class='category' wx:for="{{category}}">
-      <navigator url='/pages/index/list?id={{item.value}}'>{{item.name}}</navigator>
-    </view>
-  </view>
   <view class='group'>
     <view class='goods' wx:for="{{goods}}">
       <navigator url='/pages/index/details?id={{item.id}}' hover-class="navigator-hover">
@@ -31,7 +16,7 @@
         </view>
         <view>
           <view>
-            <image src='/images/cookie.png' class='egg-img'></image>
+             <image src='/images/cookie.png' class='egg-img'></image> 
             <text class='cookie'>{{item.price}}饼干</text>
           </view>
           <text class='goods-time'>{{item.time}}</text>

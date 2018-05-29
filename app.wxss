@@ -3,8 +3,19 @@
 
 .container {
   padding: 5rpx 20rpx;
-
-
-
+  margin-bottom:100rpx;
 
 } 
+.icon{
+  width:2rem;
+  height: 2rem;
+}
+.swiper-image{
+  width:750rpx;
+}
+.egg-img {
+  width: 55rpx;
+  height: 55rpx;
+   margin-right: 10rpx;
+   vertical-align: middle;
+}
