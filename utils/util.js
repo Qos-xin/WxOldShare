@@ -15,19 +15,20 @@ const formatNumber = n => {
 }
 const GenerateFileName = fileName => {
   var ext = /\.\w{3,4}$/.exec(fileName);
-
   var date = formatTime(new Date()).split(" ")[0];
-  console.log(date);
   var fileName = "Product/" + date + "/" + new Date().valueOf() + parseInt(Math.random() * 10000000) + ext;
-  console.log(fileName);
   return fileName;
 }
 
 
 const http = (function () {
-  var baseUrl = "http://os.qos.xin";
+  var baseUrl = "https://boss.fcleyuan.com";
   function get(url) {
     url = baseUrl + "/" + url;
+    console.log("开始Get请求地址:" + url)
+    wx.showLoading({
+      title: '加载中...',
+    })
     var promise = new Promise((resolve, reject) => {
       var token = wx.getStorageSync("token");
       wx.request({
@@ -36,6 +37,7 @@ const http = (function () {
           Authorization: token
         },
         success: function (res) {
+          console.log("Get请求完成,地址:" + url + " 数据:" + JSON.stringify(res.data))
           if (res.statusCode == 200) {
             if (res.data.code == 0) {
               resolve(res.data.result);
@@ -57,6 +59,9 @@ const http = (function () {
         },
         fail: function (res) {
           reject(res);
+        },
+        complete: function () {
+          wx.hideLoading();
         }
       })
     });
@@ -64,6 +69,7 @@ const http = (function () {
   }
   function post(url, data) {
     url = baseUrl + "/" + url;
+    console.log("开始Post请求地址:" + url)
     var promise = new Promise((resolve, reject) => {
       var token = wx.getStorageSync("token");
       wx.request({
@@ -72,7 +78,7 @@ const http = (function () {
           Authorization: token
         },
         method: "POST",
-        data:JSON.stringify(data),
+        data: JSON.stringify(data),
         success: function (res) {
           if (res.statusCode == 200) {
             if (res.data.code == 0) {
@@ -97,7 +103,7 @@ const http = (function () {
           reject(res);
         },
         complete: function (res) {
-
+          console.log("Post请求完成,地址:" + url)
         }
 
       })
@@ -106,10 +112,51 @@ const http = (function () {
   }
   function uploadImage(base, image) {
     var that = this;
+    var token = wx.getStorageSync("token")
+    var promise = new Promise((resolve, reject) => {
+      var fileName = GenerateFileName(image.path);
+      var host = 'https://boss.fcleyuan.com';
+      const uploadTask = wx.uploadFile({
+        url: host + "/api/File/Upload",
+        filePath: image.path,
+        name: 'wxUploadFile',
+        header: {
+          "Authorization": token,
+        },
+        success: function (res) {
+
+          if (res.statusCode == 200) {
+            res.data = JSON.parse(res.data);
+            if (res.data.code == 0) {
+              console.log("图片[" + image.index + "]上传成功,后台返回:" + res.data.result);
+              resolve(host + "/" + res.data.result);
+            }
+          }
+        },
+        fail: function (res) {
+          console.lo("图片[" + image.index + "]上传失败")
+          reject(res);
+        }
+
+      });
+      uploadTask.onProgressUpdate((res) => {
+        base.data.images[image.index].percent = res.progress;
+        console.log("【" + image.index + "】了看法" + base.data.images[image.index].percent)
+        base.setData({
+          images: base.data.images
+        })
+      });
+    });
+    return promise;
+  }
+
+  function uploadImageToOSS(base, image) {
+    var that = this;
     var sign = wx.getStorageSync("sign");
     var promise = new Promise((resolve, reject) => {
       var fileName = GenerateFileName(image.path);
       var host = 'https://old-share.oss-cn-beijing.aliyuncs.com';
+      console.log(image.path);
       const uploadTask = wx.uploadFile({
         url: host,
         filePath: image.path,

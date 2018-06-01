@@ -1,22 +1,32 @@
 <!--pages/index/list.wxml-->
+<view wx:if="{{goods && goods.length<=0}}">
+  <view class='weui-msg'>
+    <view class="weui-msg__text-area">
+      <view class="weui-msg__title">什么也没有</view>
+      <view class="weui-msg__desc"> 该分类下还没有物品噢,快来发吧!
+      <navigator url="/pages/publish/upload" open-type='switchTab'>点这里</navigator>
+      </view>
+    </view>
+  </view>
+</view>
 <view class='container'>
   <view class='group'>
     <view class='goods' wx:for="{{goods}}">
       <navigator url='/pages/index/details?id={{item.id}}' hover-class="navigator-hover">
         <view class='goods-flex'>
           <view>
-            <image src='{{item.headImage}}' class='head-img'></image>
-            <text>{{item.name}}</text>
+            <image src='{{item.userInfo.avatarUrl}}' class='head-img'></image>
+            <text>{{item.userInfo.nickName}}</text>
           </view>
-          <text class='goods-city'>{{item.city}}</text>
+          <text class='goods-city'>{{item.userInfo.city}}</text>
         </view>
-        <image src='{{item.image}}' mode='aspectFit' class='goods-img'></image>
+        <image src='{{item.image}}' mode='aspectFill' class='goods-img'></image>
         <view>
-          <text>{{item.intro}}</text>
+          <text>{{item.name}}</text>
         </view>
         <view>
           <view>
-             <image src='/images/cookie.png' class='egg-img'></image> 
+            <image src='/images/cookie.png' class='egg-img'></image>
             <text class='cookie'>{{item.price}}饼干</text>
           </view>
           <text class='goods-time'>{{item.time}}</text>

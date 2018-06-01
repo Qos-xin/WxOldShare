@@ -9,11 +9,7 @@ Page({
       autoplay: true,
       interval: 5000,
       duration: 1000,
-      imgUrls: [
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-      ]
+      imgUrls: []
     },
     tip: {
       cookieQuantity: 123,
@@ -43,6 +39,17 @@ Page({
       duration: e.detail.value
     })
   },
+  getBanner: function () {
+    var that = this;
+    util.http.get("/api/Banner/GetBannerList")
+      .then(data => {
+        that.setData({
+          banner: {
+            imgUrls: data
+          }
+        })
+      })
+  },
   getCategory: function () {
     var that = this;
     return util.http.get("/api/Product/GetCategory")
@@ -56,17 +63,21 @@ Page({
         })
       })
   },
-  getProduct:function(){
-    var that=this;
+  getProduct: function () {
+    var that = this;
     util.http.get("/api/Product/GetProductList")
-    .then(function(data){
-      that.setData({
-        goods:data
-      });
-    })
+      .then(function (data) {
+        that.setData({
+          goods: data
+        });
+      })
   },
   onLoad: function () {
+    this.getBanner();
     this.getCategory();
+    this.getProduct();
+  },
+  onShow: function () {
     this.getProduct();
   }
 })

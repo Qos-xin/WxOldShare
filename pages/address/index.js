@@ -1,5 +1,6 @@
 // pages/address/index.js
 var app = getApp();
+const util = require("../../utils/util.js");
 Page({
 
   /**
@@ -10,27 +11,13 @@ Page({
   },
 
   onGetAddress: function () {
-    wx.showLoading({
-      title: '正在获取地址...',
-    })
     var self = this;
-    wx.request({
-      url: 'http://os.qos.xin/api/User/GetContect',
-      header: {
-        Authorization: wx.getStorageSync('token')
-      },
-      success: function (res) {
-        if (res.data.code == 0) {
-          self.setData({
-            address: res.data.result
-          })
-        }
-      }, fail: function (res) {
-
-      }, complete: function (res) {
-        wx.hideLoading()
-      }
-    })
+    util.http.get("/api/User/GetContect")
+      .then(data => {
+        self.setData({
+          address: data
+        })
+      })
   },
   onSelectAddress: function (event) {
     var that = this;
@@ -49,25 +36,10 @@ Page({
   onDeleteAddress: function (event) {
     var self = this;
     var id = event.target.id
-    wx.showLoading({
-      title: '正在删除...',
-    })
-    wx.request({
-      method: "POST",
-      url: 'http://os.qos.xin/api/User/DeleteContect/' + id,
-      header: {
-        Authorization: wx.getStorageSync('token')
-      },
-      success: function (res) {
-        if (res.data.code == 0) {
-          wx.showToast({ "title": "删除成功" });
-          self.onGetAddress();
-        }
-      }, fail: function (res) {
-
-      }, complete: function (res) {
-        wx.hideLoading();
-      }
+    util.http.post("/api/User/DeleteContect/"+id)
+    .then(data=>{
+      wx.showToast({ "title": "删除成功" });
+      self.onGetAddress();
     })
   },
   /**

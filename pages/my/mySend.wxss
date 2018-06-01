@@ -5,3 +5,7 @@
   height: 150rpx;
   margin-right: 10rpx;
 }
+.desc{
+  display: flex;
+  justify-content: space-between;
+}

@@ -6,9 +6,9 @@
     </view>
     <view class="weui-media-box__bd">
       <view class="weui-media-box__title">
-        <image src='{{item.userInfo.icon}}'></image>
+        <image src='{{item.userInfo.avatarUrl}}'></image>
         <text>{{item.userInfo.nickName}}</text>
-        <text class='state'>未读</text>
+        <!-- <text class='state'>未读</text> -->
         <text class='time'>{{item.time}}</text>
       </view>
       <text class='weui-media-box__desc'>{{item.comment}}</text>

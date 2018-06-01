@@ -4,15 +4,24 @@
     <view class="weui-media-box__hd">
       <image class="weui-media-box__thumb" src='{{item.image}}'></image>
     </view>
-    <view class="weui-media-box__bd">
+    <view class="weui-media-box__bd" style='width:100%'>
       <text class="weui-media-box__title">{{item.productName}}</text>
       <view class="weui-media-box__desc">
-        <image src='/images/cookie.png' class='egg-img'></image>
-        <text>{{item.price}}饼干</text>
+        <view class='desc'>
+          <view>
+            <image src='/images/cookie.png' class='egg-img'></image>
+            <text class='cookie'>{{item.price}}饼干</text>
+          </view>
+          <text wx:if="{{item.orderState==2}}" style='color:red'>待发货</text>
+          <text wx:if="{{item.orderState==3}}">待确认收货</text>
+          <text wx:if="{{item.orderState==4}}">已完成</text>
+        </view>
       </view>
     </view>
   </navigator>
-  <view class='weui-media-box__ft'>
-    <button size='mini'>发货</button>
+  <view class='weui-media-box'>
+    <view class='weui-media-box__ft'>
+      <button id="{{item.id}}" wx:if="{{item.orderState==2}}" size='mini' bindtap='onConfirmSend'>发货</button>
+    </view>
   </view>
 </view>

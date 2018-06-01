@@ -3,7 +3,13 @@ page{background: #f5f5f5}
 .weui-panel__bd{background: #fff;margin-bottom: 20rpx}
 .weui-media-box__thumb{width: 150rpx;height: 150rpx;margin-right: 10rpx}
 .weui-media-box__title{font-size: 0.7rem;color: #666}
-.weui-media-box__title image{width: 45rpx;height: 45rpx;vertical-align: middle;margin-right: 10rpx}
-.weui-media-box__bd{line-height: 100rpx;width: 520rpx}
+.weui-media-box__title image{width: 45rpx;height: 45rpx;vertical-align: middle;margin-right: 10rpx;border-radius:50%;}
+.weui-media-box__bd{width: 520rpx}
+.weui-media-box__desc{
+  line-height: 55rpx;
+}
 .time{float: right}
 .state{padding: 5rpx;background: yellow}
+.weui-media-box_appmsg{
+  align-items:flex-start;
+}

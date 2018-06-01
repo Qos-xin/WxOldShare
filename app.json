@@ -5,6 +5,7 @@
     "pages/index/details",
     "pages/index/placeAnOrder",
     "pages/index/placeAnOrderSuccess",
+    "pages/publish/index",    
     "pages/publish/upload",
     "pages/publish/uploadSuccess",  
     "pages/address/index",
@@ -22,7 +23,7 @@
     "backgroundColor": "#666",
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#1296db",
-    "navigationBarTitleText": "分享会",
+    "navigationBarTitleText": "闲品汇",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {

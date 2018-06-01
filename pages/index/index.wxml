@@ -2,32 +2,32 @@
 <swiper indicator-dots='{{banner.indicatorDots}}' autoplay='{{banner.autoplay}}' duration='{{banner.duration}}' interval='{{banner.interval}}'>
   <block wx:for="{{banner.imgUrls}}">
     <swiper-item>
-      <image src='{{item}}' class='swiper-image'></image>
+      <image src='{{item}}' mode='aspectFill' class='swiper-image'></image>
     </swiper-item>
   </block>
 </swiper>
 <view class='container'>
   <view class='group'>
-    <view class='tip'>
+    <!-- <view class='tip'>
       <text>您有{{tip.cookieQuantity}}块饼干，可白拿{{tip.quantity}}件好东西!</text>
-    </view>
-    <view class='category' wx:for="{{category}}">
+    </view> -->
+    <view class='category' wx:for="{{category}}" wx:key="value">
       <navigator url='/pages/index/list?id={{item.value}}'>{{item.name}}</navigator>
     </view>
   </view>
   <view class='group'>
-    <view class='goods' wx:for="{{goods}}">
+    <view class='goods' wx:for="{{goods}}" wx:key="id">
       <navigator url='/pages/index/details?id={{item.id}}' hover-class="navigator-hover">
         <view class='goods-flex'>
           <view>
-            <image src='{{item.headImage}}' class='head-img'></image>
-            <text>{{item.name}}</text>
+            <image src='{{item.userInfo.avatarUrl}}' class='head-img'></image>
+            <text>{{item.userInfo.nickName}}</text>
           </view>
-          <text class='goods-city'>{{item.city}}</text>
+          <text class='goods-city'>{{item.userInfo.city}}</text>
         </view>
-        <image src='{{item.image}}' mode='aspectFit' class='goods-img'></image>
+        <image src='{{item.image}}' mode='widthFix' class='goods-img'></image>
         <view>
-          <text>{{item.intro}}</text>
+          <text>{{item.name}}</text>
         </view>
         <view>
           <view>

@@ -8,6 +8,26 @@ Page({
   data: {
     order: []
   },
+  onConfirmSend: function (e) {
+    var that = this;
+    var id = e.target.id;
+    wx.showModal({
+      title: '发货提醒',
+      content: '你确定要发货吗?',
+      success: function (res) {
+        if (res.confirm) {
+          util.http.post("/api/Order/DeliverGoods?id=" + id)
+            .then(data => {
+              return that.getMySend();
+            }).then(data => {
+              wx.showToast({
+                title: '发货成功!',
+              })
+            })
+        }
+      }
+    })
+  },
   getMySend() {
     var that = this;
     util.http.get("/api/Order/GetMySend")

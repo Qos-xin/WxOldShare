@@ -2,25 +2,28 @@
 <form bindsubmit='onPublish'>
   <view class='container'>
     <view>
-      <input class='weui-input' name="name" value='{{name}}' placeholder='请输入闲置物品名称' focus></input>
+      <input class='weui-input' name="name" value='{{product.name}}' placeholder='请输入闲置物品名称' focus></input>
     </view>
     <view>
-      <textarea class='weui-textarea' name="description" value='{{description}}' placeholder='请简要描述一下物品的细节，新旧程度，型号尺码等'></textarea>
+      <textarea class='weui-textarea' name="description" value='{{product.description}}' placeholder='请简要描述一下物品的细节，新旧程度，型号尺码等'></textarea>
     </view>
     <view class='weui-uploader'>
       <view class='weui-uploader__hd'>
         <text class='weui-uploader__title'>图片</text>
+        <view class="weui-uploader__info">{{images.length}}</view>
       </view>
       <view class='weui-uploader__bd'>
         <view class='weui-uploader__files'>
-          <block wx:for="{{images}}">
-            <view class='imageBox'>
-              <image src='{{item.path}}'></image>
-              <progress class='imageProgress' percent="{{item.percent}}" active/>
-              <input hidden='true' name="images" value='{{item.url}}'></input>
+          <block wx:for="{{images}}" wx:key="*this">
+            <view class='weui-uploader__files' bindtap='previewImage' id='{{item.path}}' >
+              <image class='weui-uploader__img' src='{{item.path}}' mode='aspectFill'></image>
+              <view class='weui-uploader__file-content'>{{item.percent}}</view>
+              <input hidden='true' name="images" value='{{product.images}}'></input>
             </view>
           </block>
-          <view bindtap='onSelectFile' class='weui-uploader__input-box'></view>
+          <view class='weui-uploader__input-box'>
+          <view class='weui-uploader__input' bindtap='chooseImage'></view>
+          </view>
         </view>
       </view>
     </view>
@@ -29,7 +32,7 @@
     <view class='weui-cell weui-cell_access'>
       <view class='weui-cell__bd'>是否全新</view>
       <view class='weui-cell__ft'>
-        <switch name="isNew" checked="{{isNew}}"></switch>
+        <switch name="isNew" checked="{{product.isNew}}" color='#1296db'></switch>
       </view>
 
     </view>
@@ -38,7 +41,7 @@
 
       <picker name="productCategory" bindchange='onCategoryPickerChange' value='{{categoryId}}' range='{{category}}' range-key='name'>
         <view class='picker'>
-          <view wx:if="{{categoryId!=null}}"  class='weui-cell__ft'>{{category[categoryId].name}}</view>
+          <view wx:if="{{product.categoryId!=null}}"  class='weui-cell__ft'>{{category[categoryId].name}}</view>
           <view wx:else class='weui-cell__ft'>请选择分类</view>
         </view>
       </picker>
@@ -46,7 +49,7 @@
     <view class='weui-cell weui-cell_access'>
       <view class='weui-cell__bd'>饼干(块)</view>
       <view class='weui-cell__ft'>
-        <input class='weui-input' name="price" value='{{price}}' placeholder='请输入整数'></input>
+        <input class='weui-input' name="price" value='{{product.price}}' type='number' confirm-type='next' placeholder='请输入整数'></input>
       </view>
     </view>
     <view class='weui-cell weui-cell_access'>
@@ -57,7 +60,7 @@
     </view>
     <view class='container'>
       <text class='weui-msg__desc'>注意：若宝贝支持快递寄送，需要您在有人兑换后自行寄送宝贝。</text>
-      <button class='weui-btn weui-btn_primary' form-type='submit'>发布</button>
+      <button form-type='submit'>发布</button>
     </view>
   </view>
 </form>

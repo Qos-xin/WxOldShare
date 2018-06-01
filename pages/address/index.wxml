@@ -8,8 +8,8 @@
     <view>{{item.address}}</view>
   </view>
   <view class='btn-wrap'>
-    <button class='choose-btn weui-btn weui-btn_mini weui-btn_default' bindtap='onSelectAddress' data-index='{{index}}'>选择地址</button>
-    <text class='' id='{{item.id}}' bindtap='onDeleteAddress'>删除</text>
+    <text id='{{item.id}}' bindtap='onDeleteAddress'>删除</text>
+    <button size='mini' type='primary' bindtap='onSelectAddress' data-index='{{index}}'>选择地址</button>
   </view>
 </view>
 <navigator url='/pages/address/add' class='add-btn'>新建地址</navigator>

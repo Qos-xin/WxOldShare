@@ -8,6 +8,26 @@ Page({
   data: {
     order: []
   },
+  onConfirmReceipt: function (e) {
+    var that = this;
+    var id = e.target.id;
+    wx.showModal({
+      title: '确认收货提醒',
+      content: '你确定要确认收货吗?',
+      success: function (res) {
+        if (res.confirm) {
+          util.http.post("/api/Order/ConfirmReceipt?id=" + id)
+            .then(data => {
+              return that.getReceive();
+            }).then(data => {
+              wx.showToast({
+                title: '确认收货成功!',
+              })
+            })
+        }
+      }
+    })
+  },
   getReceive() {
     var that = this;
     util.http.get("/api/Order/GetMyReceive")

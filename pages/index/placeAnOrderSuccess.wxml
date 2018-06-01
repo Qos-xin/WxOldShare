@@ -7,8 +7,7 @@
     <view class='weui-msg__title'>操作成功</view>
     <view class='weui-msg__desc'>下单成功,请到我兑换的查看!</view>
   </view>
-  <!-- <view class='weui-opr-area'>
-    <view class='weui-btn-area'>
-    </view>
-  </view> -->
+   <view class='weui-opr-area'>
+    <navigator url='/pages/my/mypublish'>立即查看</navigator>
+  </view> 
 </view>

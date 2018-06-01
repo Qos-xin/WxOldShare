@@ -14,12 +14,35 @@ Page({
     },
     product: null,
     comment: null,
-    commentContent:""
+    commentContent: "",
+    isCollecting:false
   },
   /**
    * 获取产品详情
    */
+  getIsFavorter() {
+    var that = this;
+    util.http.get("/api/Favorite/GetIsFavorter")
+      .then(data => {
+        that.setData({
+          isCollecting: data
+        })
+      })
+  },
+  onCollect: function () {
+    var that = this;
+    util.http.post("/api/Favorite/Collect?id=" + this.data.product.id)
+      .then(data => {
+        that.setData({
+          isCollecting: data
+        })
+        var msg = data ? "收藏成功" : "取消收藏成功";
 
+        wx.showToast({
+          title: msg,
+        })
+      })
+  },
   getProductDetails: function (id) {
     var that = this;
     util.http.get("/api/Product/GetProductDetails?id=" + id)
@@ -42,22 +65,21 @@ Page({
     var that = this;
     var pid = this.data.product.id;
     var comment = e.detail.value.comment;
-    if(comment&&comment!="")
-    {
-    util.http.post("/api/Product/Comment?id=" + pid, comment)
-      .then(data => {
-        that.setData({
-          commentContent:""
-        });
-        that.getComment(pid);
-        wx.showToast({
-          title: '评论成功',
-        }, data => {
+    if (comment && comment != "") {
+      util.http.post("/api/Product/Comment?id=" + pid, comment)
+        .then(data => {
+          that.setData({
+            commentContent: ""
+          });
+          that.getComment(pid);
           wx.showToast({
-            title: '评论失败',
+            title: '评论成功',
+          }, data => {
+            wx.showToast({
+              title: '评论失败',
+            })
           })
         })
-      })
     }
   },
   /**
@@ -66,6 +88,7 @@ Page({
   onLoad: function (options) {
     this.getProductDetails(options.id);
     this.getComment(options.id);
+    this.getIsFavorter(options.id);
   },
 
   /**
