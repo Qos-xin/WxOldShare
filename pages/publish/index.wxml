@@ -1,2 +1,3 @@
 <!--pages/publish/index.wxml-->
-<text>pages/publish/index.wxml</text>
+<view style='height:45vh'></view>
+<navigator class='nav' url='/pages/publish/upload'>立即发布</navigator>

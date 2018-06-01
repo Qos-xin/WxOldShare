@@ -1,12 +1,15 @@
 <!--pages/address/add.wxml-->
 <form bindsubmit="onSubmit">
+  <view wx:if="{{form.$invalidMsg && form.$dirty}}" class="invalid">
+    {{form.$invalidMsg}}
+  </view>
   <view class='weui-cells weui-cells_form container'>
     <view class='weui-cell'>
       <view class='weui-cell_hd'>
         <text>收件人</text>
       </view>
       <view class=' weui-cell_bd '>
-        <input class='weui-input' placeholder='姓名' value='{{name}}' name = "name"></input>
+        <input class='weui-input' maxlength='5' bindblur="validate" data-name="name" data-validator="required" placeholder='姓名' value='{{name}}' name="name"></input>
       </view>
     </view>
     <view class='weui-cell'>
@@ -14,7 +17,7 @@
         <text>手机号</text>
       </view>
       <view class=' weui-cell_bd '>
-        <input class='weui-input' placeholder='手机号或者电话号码' name = "phone" value='{{phone}} '></input>
+        <input class='weui-input' maxlength='11' bindblur='validate' data-name="phone" data-validator="required,phone" placeholder='手机号或者电话号码' name="phone" value='{{phone}} '></input>
       </view>
     </view>
     <view class='weui-cell'>
@@ -22,9 +25,9 @@
         <text>详细地址</text>
       </view>
       <view class=' weui-cell_bd '>
-        <input class='weui-input' placeholder='请具体到街道、门牌号' value='{{address}} ' name = "address"></input>
+        <input class='weui-input' bindblur='validate' data-name='address' data-validator="required" placeholder='请具体到街道、门牌号' value='{{address}} ' name="address"></input>
       </view>
     </view>
-    <button class='weui-btn weui-btn_primary' form-type='submit'>保存</button>
+    <button class='weui-btn' loading='{{submiting}}' disabled='{{submiting}}' form-type='submit'>保存</button>
   </view>
 </form>

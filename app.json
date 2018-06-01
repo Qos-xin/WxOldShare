@@ -35,7 +35,7 @@
       "iconPath":"/images/unused-gray.png",
       "selectedIconPath":"/images/unused-blue.png"
     },{
-      "pagePath": "pages/publish/upload",
+      "pagePath": "pages/publish/index",
       "text": "发布",
       "iconPath": "/images/add-gray.png",
       "selectedIconPath": "/images/add-blue.png"
